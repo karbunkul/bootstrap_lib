@@ -1,0 +1,4 @@
+name = Twitter bootstrap
+description = Use twitter bootsrap
+core = 7.x
+configure = admin/config/media/bootstrap-lib

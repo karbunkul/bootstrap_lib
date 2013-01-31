@@ -1,0 +1,31 @@
+<?php
+
+function bootstrap_lib_js_alter(&$javascript){
+  // last jquery
+  $jquery = drupal_get_path('module', 'bootstrap_lib') . '/jquery/jquery-last.js';
+  $javascript['misc/jquery.js']['data'] = $jquery;
+ 
+  // bootstrap plugin folder
+  $bootstrap_dir = drupal_get_path('module', 'bootstrap_lib') . '/bootstrap/';
+  
+  // attached files
+  $files = array();
+  // js
+  $files['js'][] = 'bootstrap.js';
+  $files['js'][] = 'bootstrap-carousel.js';
+  // css
+  $files['css'][] = 'bootstrap.css';
+  $files['css'][] = 'bootstrap-responsive.css';
+  
+  // add bootstrap js & css
+  foreach ($files AS $section => $item){
+    foreach ($item as $val){
+      $file = $bootstrap_dir . $section . '/' . $val;
+      if ($section == 'js'){
+        drupal_add_js($file);
+      }elseif ($section == 'css'){
+        drupal_add_css($file);
+      }
+    }
+  }
+}
